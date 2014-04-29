@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in redis-backed-mongoid.gemspec
+# Specify your gem's dependencies in mongodis.gemspec
 gemspec

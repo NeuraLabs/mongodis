@@ -1,11 +1,11 @@
 require "spec_helper"
 require "redis"
 
-RedisBackedMongoid.redis = Redis.new
+Mongodis.redis = Redis.new
 
-describe RedisBackedMongoid::Reader do
+describe Mongodis::Reader do
   before do
-    RedisBackedMongoid.redis.flushdb
+    Mongodis.redis.flushdb
   end
 
   describe "simple storage" do

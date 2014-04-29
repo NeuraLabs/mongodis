@@ -1,7 +1,7 @@
-require "redis_backed_mongoid/backer"
-require "redis_backed_mongoid/reader"
+require "mongodis/backer"
+require "mongodis/reader"
 
-module RedisBackedMongoid
+module Mongodis
   module Base
     def self.included(base)
       base.extend(ClassMethods)
@@ -11,7 +11,7 @@ module RedisBackedMongoid
     end
 
     def put_in_redis
-      RedisBackedMongoid::Backer.new(self, self.class.redis_backer_options).write
+      Mongodis::Backer.new(self, self.class.redis_backer_options).write
     end
 
     def redis_backer_key
@@ -23,7 +23,7 @@ module RedisBackedMongoid
             send(key).to_s
           end
         end
-        RedisBackedMongoid.key(keys, self.class)
+        Mongodis.key(keys, self.class)
       end
     end
 
@@ -37,7 +37,7 @@ module RedisBackedMongoid
           end
         end
         keys << "list"
-        RedisBackedMongoid.key(keys, self.class)
+        Mongodis.key(keys, self.class)
       end
     end
 
@@ -56,7 +56,7 @@ module RedisBackedMongoid
       end
 
       def redis_getter(params={})
-        RedisBackedMongoid::Reader.new(params, redis_backer_options)
+        Mongodis::Reader.new(params, redis_backer_options)
       end
     end
   end

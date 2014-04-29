@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'redis_backed_mongoid/version'
+require 'mongodis/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "redis-backed-mongoid"
-  spec.version       = RedisBackedMongoid::VERSION
+  spec.name          = "mongodis"
+  spec.version       = Mongodis::VERSION
   spec.authors       = ["Tom Caspy"]
   spec.email         = ["tcaspy@gmail.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}

@@ -1,8 +1,8 @@
 require "rspec"
 
-require 'redis_backed_mongoid/base'
+require 'mongodis/base'
 class Dummy
-  include RedisBackedMongoid::Base
+  include Mongodis::Base
   def self.after_create(foo); end
 
   def id
@@ -21,7 +21,7 @@ class Dummy
 end
 
 class ListDummy
-  include RedisBackedMongoid::Base
+  include Mongodis::Base
   def self.after_create(foo); end
 
   def id

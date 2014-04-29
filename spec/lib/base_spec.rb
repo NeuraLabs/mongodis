@@ -13,7 +13,7 @@ describe "all your base" do
   end
 
   it "saves the item into redis" do
-    RedisBackedMongoid.redis.should_receive :setex
+    Mongodis.redis.should_receive :setex
     Dummy.new.put_in_redis
   end
 end
