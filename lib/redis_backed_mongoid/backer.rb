@@ -6,15 +6,15 @@ module RedisBackedMongoid
     end
 
     def write
-      key = @mongoid_object.redis_backer_key
-
       if @options[:persistance_types].include?(:key)
-        RedisBackedMongoid.redis.setex(key, @mongoid_object.to_json, @options[:ttl])
+        key = @mongoid_object.redis_backer_key
+        RedisBackedMongoid.redis.setex(key, @options[:ttl], @mongoid_object.to_json)
       end
 
-      if @options[:persistance_types].include?(:sorted_set)
-        RedisBackedMongoid.redis.zadd(key+":sorted_set", @mongoid_object.created_at.to_i, @mongoid_object.to_json)
-        RedisBackedMongoid.redis.zremrangebyrank(key+":sorted_set", 0, @mongoid_object.created_at.to_i - @options[:ttl])
+      if @options[:persistance_types].include?(:list)
+        key = @mongoid_object.redis_backer_list_key
+        RedisBackedMongoid.redis.zadd(key, @mongoid_object.created_at.to_i, @mongoid_object.to_json)
+        #RedisBackedMongoid.redis.zremrangebyrank(key, 0, @mongoid_object.created_at.to_i - @options[:ttl])
       end
     end
   end
