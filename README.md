@@ -1,4 +1,4 @@
-# Redis::Backed::Mongoid
+# Mongodis
 
 TODO: Write a gem description
 
